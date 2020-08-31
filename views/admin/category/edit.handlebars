@@ -1,0 +1,51 @@
+<div class="container">
+
+
+    <h3 class="alert alert-dark p-3 text-dark text-center">All Categories </h3>
+
+
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <table class="table table-bordered text-center border-success text-white" id="tAction">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover bg-dark category-list">
+                    {{#each categories}}
+                    <tr>
+                        <td id={{_id}}>{{title}}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="/admin/category/edit/{{_id}}" class="btn btn-sm btn-warning mr-2"
+                                role="button">Edit</a>
+                            <form action="/admin/category/delete/{{_id}}?newMethod=DELETE" method="POST"
+                                id="delete-form">
+                                <button class="btn btn-sm btn-danger" type="submit" id="deleteButton">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <div class="row p-4">
+        <div class="col-md-8">
+            <form action="/admin/category/create" method="POST">
+                <div class="form-group">
+                    <label for="categoryTitle">Title</label>
+                    <input type="text" class="form-control" id="categoryTitle" name="categoryTitle"
+                        value='{{category.title}}'>
+                    <input type="hidden" class="form-control" id="categoryID" name="categoryID" value={{category._id}}>
+                </div>
+                <button class="btn btn-outline-warning btn-lg" type="submit" id="update-category-button">Update
+                    Category</button>
+            </form>
+        </div>
+    </div>
+
+</div>
